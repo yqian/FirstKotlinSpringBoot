@@ -6,6 +6,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.yqian.job.entity.JobEntity;
+import org.yqian.job.repository.JobRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
