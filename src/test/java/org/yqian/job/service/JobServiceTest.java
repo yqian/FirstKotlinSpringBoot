@@ -43,4 +43,13 @@ public class JobServiceTest {
         List<JobEntity> result = jobService.findMostActiveJobs();
         assertThat(result).isNotEmpty();
     }
+
+    @Test
+    public void testFindMostRecentJobs() {
+        List<JobEntity> jobEntityList = new ArrayList<>();
+        jobEntityList.add(new JobEntity());
+        given(mockRepository.findMostRecentJobs()).willReturn(jobEntityList);
+        List<JobEntity> result = jobService.findMostRecentJobs();
+        assertThat(result).isNotEmpty();
+    }
 }
