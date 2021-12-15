@@ -5,7 +5,6 @@ import org.yqian.job.entity.JobEntity;
 import org.yqian.job.repository.JobRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class JobService {
@@ -22,5 +21,9 @@ public class JobService {
 
     public List<JobEntity> findMostActiveJobs() {
         return jobRepository.findMostActiveJobs();
+    }
+
+    public List<JobEntity> findMostRecentJobs() {
+        return jobRepository.findMostRecentJobs();
     }
 }

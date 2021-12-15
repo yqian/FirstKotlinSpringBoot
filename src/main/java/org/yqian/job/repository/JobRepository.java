@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface JobRepository extends CrudRepository<JobEntity, Integer> {
 
-    @Query("SELECT JOB FROM (SELECT JOB FROM JOB  WHERE STATUS='A' ORDER BY BIDCOUNT DESC) WHERE ROWNUM <= 10")
+    @Query("SELECT JOB FROM (SELECT JOB FROM JOB WHERE STATUS='A' ORDER BY BIDCOUNT DESC) WHERE ROWNUM <= 10")
     public List<JobEntity> findMostActiveJobs();
+
+    @Query("SELECT JOB FROM (SELECT JOB FROM JOB ORDER BY PUBLISHDATE DESC) WHERE ROWNUM <= 10")
+    public List<JobEntity> findMostRecentJobs();
 }
