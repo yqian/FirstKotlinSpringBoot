@@ -38,6 +38,7 @@ public class JobServiceTest {
     @Test
     public void testFindMostActiveJobs() {
         List<JobEntity> jobEntityList = new ArrayList<>();
+        jobEntityList.add(new JobEntity());
         given(mockRepository.findMostActiveJobs()).willReturn(jobEntityList);
         List<JobEntity> result = jobService.findMostActiveJobs();
         assertThat(result).isNotEmpty();
