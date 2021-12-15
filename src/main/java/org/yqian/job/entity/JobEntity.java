@@ -26,9 +26,13 @@ public class JobEntity {
 
     private String contactEmail;
 
+    private String status;
+
     private double bidPrice;
 
     private int bidCount;
 
+    private Timestamp publishDate;
+    
     private Timestamp expiration;
 }
