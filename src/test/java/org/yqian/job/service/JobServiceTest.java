@@ -9,10 +9,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.yqian.job.entity.BidEntity;
 import org.yqian.job.entity.JobEntity;
+import org.yqian.job.repository.BidRepository;
 import org.yqian.job.repository.JobRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,6 +33,8 @@ public class JobServiceTest {
     @Mock
     private BidRepository mockBidRepository;
 
+    @Mock
+    private MailService mockMailService;
     @InjectMocks
     private JobService jobService;
 
@@ -67,21 +71,18 @@ public class JobServiceTest {
     public void testExpiredJobs() {
         List<JobEntity> jobEntityList = new ArrayList<>();
         jobEntityList.add(new JobEntity());
-
-
-
         given(mockJobRepository.findAllExpiredJobs()).willReturn(jobEntityList);
-
-        List<JobEntity> result = jobService.findMostRecentJobs();
+        List<JobEntity> result = jobService.findAllExpiredJobs();
         assertThat(result).isNotEmpty();
     }
 
     @Test
     public void testCloseJob() {
         BidEntity bid = new BidEntity();
-        given(mockBidRepository.findById(jobEntityList.get(0).getBidID())).willReturn(bid);
+        bid.setEmail("email@email");
+        given(mockBidRepository.findById(new Integer(0))).willReturn(Optional.of(bid));
         jobService.closeJob(new JobEntity());
-        verify(jobService, times(1)).email();
+        verify(mockMailService, times(1)).sendEmail("email@email");
     }
 
     @Test
