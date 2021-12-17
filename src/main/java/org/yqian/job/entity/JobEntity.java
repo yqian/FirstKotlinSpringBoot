@@ -28,11 +28,13 @@ public class JobEntity {
 
     private String status;
 
+    private int bidID;
+
     private double bidPrice;
 
     private int bidCount;
 
     private Timestamp publishDate;
-    
+
     private Timestamp expiration;
 }
